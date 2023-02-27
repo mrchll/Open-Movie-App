@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from 'react';
 
-const MovieDetailedInfo = (props) => {
-	const movieDetails = props.movieDetails;
-	const movieId = useState(movieDetails.imdbID);
-	const [movieInfos, setMovieInfos] = useState('');
+type MovieDetailedInfoProps = {
+	trigger: boolean;
+	setTrigger: React.Dispatch<React.SetStateAction<boolean>>;
+	movieDetails: any;
+	key: string;
+};
 
-	const getMovieRequest = async (movieId) => {
+const MovieDetailedInfo: React.FC<MovieDetailedInfoProps> = (props) => {
+	const movieDetails = props.movieDetails;
+	const movieId: string = useState(movieDetails.imdbID);
+	const [movieInfos, setMovieInfos] = useState<any>('');
+
+	const getMovieRequest = async (movieId: string) => {
 		const url = `http://www.omdbapi.com/?i=${movieId[0]}&apikey=b8b3fec4`;
 
 		const response = await fetch(url);

@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-import SearchBox from './SearchBox';
-import MovieList from './MovieList';
+import SearchBox from './SearchBox.tsx';
+import MovieList from './MovieList.tsx';
 
-const App = () => {
-	const [movies, setMovies] = useState([]);
-	const [searchValue, setSearchValue] = useState('');
+const App: React.FC = () => {
+	const [movies, setMovies] = useState<any[]>([]);
+	const [searchValue, setSearchValue] = useState<string>('');
 
-	const getMovieRequest = async (searchValue) => {
+	const getMovieRequest = async (searchValue: string) => {
 		const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=b8b3fec4`;
 
 		const response = await fetch(url);

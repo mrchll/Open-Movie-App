@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import MovieDetailedInfo from './MovieDetailedInfo';
+import MovieDetailedInfo from './MovieDetailedInfo.tsx';
 
-const MovieList = (props) => {
-	const [showDetails, setShowDetails] = useState(false);
+type MovieListProps = {
+	movies: any[];
+};
+
+const MovieList: React.FC<MovieListProps> = (props) => {
+	const [showDetails, setShowDetails] = useState<boolean>(false);
 
 	return (
 		<>
@@ -11,6 +15,7 @@ const MovieList = (props) => {
 					<div
 						className='image-container d-flex justify-content-start m-3'
 						onClick={() => setShowDetails(true)}
+						key={movie.imdbID}
 					>
 						<img src={movie.Poster} alt='movie'></img>
 						<div className='overlay d-flex align-items-center justify-content-center' >
@@ -27,6 +32,7 @@ const MovieList = (props) => {
 							trigger={showDetails}
 							setTrigger={setShowDetails}
 							movieDetails={movie}
+							key={movie.imdbID}
 						/>
 					</div>
 				</>
